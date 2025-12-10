@@ -1,2956 +1,651 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Taha Karimi - Frontend Developer | Professional Portfolio</title>
+    <title>Taha Karimi - Frontend Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Three.js for 3D effects -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- GSAP for advanced animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Particles.js for particle effects -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
     <script>
       tailwind.config = {
-        darkMode: "class",
         theme: {
           extend: {
-            colors: {
-              primary: "#0f172a",
-              secondary: "#1e293b",
-              accent: "#3b82f6",
-              gold: "#f59e0b",
-              platinum: "#e5e7eb",
-              dark: "#020617",
-              light: "#f8fafc",
-            },
             fontFamily: {
-              inter: ["Inter", "sans-serif"],
-              playfair: ["Playfair Display", "serif"],
-              mono: ["JetBrains Mono", "monospace"],
+              sans: ["Inter", "sans-serif"],
+              display: ["Space Grotesk", "sans-serif"],
             },
-            animation: {
-              float: "float 8s ease-in-out infinite",
-              glow: "glow 3s ease-in-out infinite alternate",
-              "slide-up": "slideUp 1s ease-out",
-              "fade-in": "fadeIn 1.2s ease-out",
-              liquid: "liquid 15s ease-in-out infinite",
-              shimmer: "shimmer 3s infinite",
-              "pulse-soft": "pulseSoft 4s ease-in-out infinite",
+            colors: {
+              background: "#030712", // Gray 950
+              surface: "#111827", // Gray 900
+              surfaceHighlight: "#1f2937", // Gray 800
+              primary: "#6366f1", // Indigo 500
+              secondary: "#ec4899", // Pink 500
             },
           },
         },
       };
     </script>
-
     <style>
-      * {
-        font-family: "Inter", sans-serif;
-        scroll-behavior: smooth;
-      }
-
-      :root {
-        --primary-gradient: linear-gradient(
-          135deg,
-          #000000 0%,
-          #020617 15%,
-          #0f172a 35%,
-          #1e293b 65%,
-          #334155 85%,
-          #475569 100%
-        );
-        --glass-gradient: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.15) 0%,
-          rgba(255, 255, 255, 0.08) 50%,
-          rgba(255, 255, 255, 0.03) 100%
-        );
-        --accent-gradient: linear-gradient(
-          135deg,
-          #3b82f6 0%,
-          #1d4ed8 25%,
-          #1e40af 50%,
-          #3b0764 75%,
-          #581c87 100%
-        );
-        --gold-gradient: linear-gradient(
-          135deg,
-          #f59e0b 0%,
-          #fbbf24 25%,
-          #f59e0b 50%,
-          #d97706 75%,
-          #b45309 100%
-        );
-        --neon-gradient: linear-gradient(
-          135deg,
-          #00ffff 0%,
-          #0080ff 25%,
-          #8000ff 50%,
-          #ff00ff 75%,
-          #ff0080 100%
-        );
-        --liquid-gradient: linear-gradient(
-          45deg,
-          rgba(59, 130, 246, 0.2),
-          rgba(245, 158, 11, 0.15),
-          rgba(139, 92, 246, 0.18),
-          rgba(0, 255, 255, 0.12),
-          rgba(255, 0, 255, 0.1)
-        );
-        --shadow-primary: 0 25px 50px rgba(0, 0, 0, 0.6);
-        --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
-        --shadow-neon: 0 0 40px rgba(59, 130, 246, 0.3), 0 0 80px rgba(59, 130, 246, 0.2);
-        --shadow-gold: 0 0 30px rgba(245, 158, 11, 0.4), 0 0 60px rgba(245, 158, 11, 0.2);
-      }
-
       body {
-        background: var(--primary-gradient);
-        min-height: 100vh;
-        overflow-x: hidden;
-        position: relative;
+        background-color: #030712;
+        color: #f3f4f6;
       }
-
-      /* Enhanced Professional Liquid Glass Effects 2.0 */
-      .liquid-glass {
-        background: rgba(255, 255, 255, 0.06);
-        backdrop-filter: blur(50px);
-        -webkit-backdrop-filter: blur(50px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: var(--shadow-glass), inset 0 1px 0 rgba(255, 255, 255, 0.2),
-          0 1px 0 rgba(255, 255, 255, 0.08);
-        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        position: relative;
-        overflow: hidden;
-        transform-style: preserve-3d;
-        perspective: 1000px;
+      .glass-card {
+        background: rgba(17, 24, 39, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
       }
-
-      .liquid-glass::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.1),
-          transparent
-        );
-        transition: left 2s ease;
-        pointer-events: none;
-        z-index: 1;
-      }
-
-      .liquid-glass::after {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(
-          from 0deg,
-          transparent,
-          rgba(59, 130, 246, 0.1),
-          transparent,
-          rgba(245, 158, 11, 0.1),
-          transparent
-        );
-        animation: rotate 8s linear infinite;
-        opacity: 0;
-        transition: opacity 0.8s ease;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      .liquid-glass:hover {
-        transform: translateY(-12px) rotateX(5deg) rotateY(5deg);
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.25);
-        box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.3),
-          0 1px 0 rgba(255, 255, 255, 0.15),
-          var(--shadow-neon);
-      }
-
-      .liquid-glass:hover::before {
-        left: 100%;
-      }
-
-      .liquid-glass:hover::after {
-        opacity: 1;
-      }
-
-      @keyframes rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-
-      /* Executive Navigation */
-      .nav-glass {
-        background: rgba(2, 6, 23, 0.85);
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.4s ease;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .nav-glass.scrolled {
-        background: rgba(2, 6, 23, 0.95);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        border-bottom-color: rgba(255, 255, 255, 0.15);
-      }
-
-      .nav-link {
-        position: relative;
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        transition: all 0.3s ease;
-      }
-
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--gold-gradient);
-        transition: width 0.3s ease;
-      }
-
-      .nav-link:hover::after {
-        width: 100%;
-      }
-
-      /* Sophisticated Animated Background */
-      .liquid-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        background: var(--primary-gradient);
-      }
-
-      .liquid-shape {
-        position: absolute;
-        border-radius: 50%;
-        background: var(--liquid-gradient);
-        filter: blur(3px);
-        animation: liquid 20s ease-in-out infinite;
-        opacity: 0.4;
-      }
-
-      .liquid-shape:nth-child(1) {
-        width: 400px;
-        height: 400px;
-        top: 5%;
-        left: 5%;
-        animation-delay: 0s;
-      }
-
-      .liquid-shape:nth-child(2) {
-        width: 300px;
-        height: 300px;
-        top: 50%;
-        right: 10%;
-        animation-delay: 7s;
-      }
-
-      .liquid-shape:nth-child(3) {
-        width: 350px;
-        height: 350px;
-        bottom: 15%;
-        left: 15%;
-        animation-delay: 14s;
-      }
-
-      .liquid-shape:nth-child(4) {
-        width: 250px;
-        height: 250px;
-        top: 25%;
-        right: 30%;
-        animation-delay: 3s;
-      }
-
-      @keyframes liquid {
-        0%,
-        100% {
-          border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-          transform: rotate(0deg) scale(1);
-        }
-        20% {
-          border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-          transform: rotate(72deg) scale(1.1);
-        }
-        40% {
-          border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%;
-          transform: rotate(144deg) scale(0.9);
-        }
-        60% {
-          border-radius: 60% 40% 60% 40% / 70% 30% 50% 60%;
-          transform: rotate(216deg) scale(1.05);
-        }
-        80% {
-          border-radius: 40% 70% 50% 30% / 40% 70% 60% 50%;
-          transform: rotate(288deg) scale(0.95);
-        }
-      }
-
-      /* Executive Typography with Neon Effects */
-      .hero-title {
-        font-family: "Playfair Display", serif;
-        font-size: clamp(3rem, 6vw, 5rem);
-        font-weight: 700;
-        line-height: 1.1;
-        background: linear-gradient(
-          135deg,
-          #ffffff 0%,
-          #f1f5f9 20%,
-          #e2e8f0 40%,
-          #cbd5e1 60%,
-          #94a3b8 80%,
-          #64748b 100%
-        );
+      .gradient-text {
+        background: linear-gradient(to right, #818cf8, #e879f9, #22d3ee);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 
-          0 0 30px rgba(255, 255, 255, 0.3),
-          0 0 60px rgba(59, 130, 246, 0.2),
-          0 0 90px rgba(245, 158, 11, 0.1);
-        letter-spacing: -0.02em;
-        position: relative;
-        animation: textGlow 3s ease-in-out infinite alternate;
-      }
-
-      @keyframes textGlow {
-        0% {
-          text-shadow: 
-            0 0 30px rgba(255, 255, 255, 0.3),
-            0 0 60px rgba(59, 130, 246, 0.2),
-            0 0 90px rgba(245, 158, 11, 0.1);
-        }
-        100% {
-          text-shadow: 
-            0 0 40px rgba(255, 255, 255, 0.4),
-            0 0 80px rgba(59, 130, 246, 0.3),
-            0 0 120px rgba(245, 158, 11, 0.2);
-        }
-      }
-
-      .hero-subtitle {
-        font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-        color: #94a3b8;
-        font-weight: 400;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        margin-bottom: 2rem;
-      }
-
-      .section-title {
-        font-family: "Playfair Display", serif;
-        font-size: clamp(2.5rem, 4vw, 3.5rem);
-        font-weight: 600;
-        background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        letter-spacing: -0.01em;
-      }
-
-      /* Premium Buttons */
-      .btn-primary {
-        background: var(--gold-gradient);
-        color: #0f172a;
-        padding: 16px 40px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 1.1rem;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        box-shadow: 0 15px 35px rgba(245, 158, 11, 0.3);
-        position: relative;
-        overflow: hidden;
-        letter-spacing: 0.5px;
-      }
-
-      .btn-primary::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.3),
-          transparent
-        );
-        transition: left 0.8s ease;
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 25px 50px rgba(245, 158, 11, 0.4);
-        background: linear-gradient(
-          135deg,
-          #fbbf24 0%,
-          #f59e0b 50%,
-          #d97706 100%
-        );
-      }
-
-      .btn-primary:hover::before {
-        left: 100%;
-      }
-
-      .btn-secondary {
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(25px);
-        color: white;
-        padding: 16px 40px;
-        border-radius: 50px;
-        font-weight: 500;
-        font-size: 1.1rem;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        letter-spacing: 0.5px;
-      }
-
-      .btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.12);
-        transform: translateY(-4px);
-        border-color: rgba(255, 255, 255, 0.25);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      }
-
-      /* Executive Project Cards with 3D Effects */
-      .project-card {
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(30px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
-        padding: 2.5rem;
-        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        position: relative;
-        overflow: hidden;
-        transform-style: preserve-3d;
-        perspective: 1000px;
-      }
-
-      .project-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(245, 158, 11, 0.1),
-          transparent
-        );
-        transition: left 0.6s ease;
-        z-index: 1;
-      }
-
-      .project-card::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(245, 158, 11, 0.4),
-          transparent
-        );
-      }
-
-      .project-card:hover {
-        transform: translateY(-15px) rotateX(8deg) rotateY(8deg) scale(1.02);
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 215, 0, 0.3);
-        box-shadow: 
-          0 40px 80px rgba(0, 0, 0, 0.4),
-          0 0 30px rgba(255, 215, 0, 0.2),
-          inset 0 0 20px rgba(255, 215, 0, 0.05);
-      }
-
-      .project-card:hover::before {
-        left: 100%;
-      }
-
-      .project-card:hover .project-icon {
-        transform: scale(1.3) rotateY(360deg);
-        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
-      }
-
-      .project-card:hover .project-title {
-        color: var(--gold-400);
-        text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        transform: translateZ(20px);
-      }
-
-      .project-card:hover .project-description {
-        transform: translateZ(10px);
-      }
-
-      .project-icon {
-        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        position: relative;
-        z-index: 2;
-      }
-
-      .project-title {
-        transition: all 0.4s ease;
-        position: relative;
-        z-index: 2;
-      }
-
-      .project-description {
-        transition: all 0.4s ease;
-        position: relative;
-        z-index: 2;
-      }
-
-      /* Premium Skill Bars */
-      .skill-bar {
-        background: rgba(255, 255, 255, 0.08);
-        height: 10px;
-        border-radius: 12px;
-        overflow: hidden;
-        position: relative;
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-      }
-
-      .skill-progress {
-        height: 100%;
-        background: var(--gold-gradient);
-        border-radius: 12px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
-      }
-
-      .skill-progress::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.5),
-          transparent
-        );
-        animation: shimmer 3s infinite;
-      }
-
-      @keyframes shimmer {
-        0% {
-          left: -100%;
-        }
-        100% {
-          left: 100%;
-        }
-      }
-
-      @keyframes pulseSoft {
-        0%,
-        100% {
-          opacity: 0.8;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 1;
-          transform: scale(1.02);
-        }
-      }
-
-      /* Enhanced Animations */
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-25px);
-        }
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(60px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes glow {
-        from {
-          box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
-        }
-        to {
-          box-shadow: 0 0 40px rgba(245, 158, 11, 0.6);
-        }
-      }
-
-      /* Professional Form Styling */
-      .form-input {
-        background: rgba(255, 255, 255, 0.06);
-        backdrop-filter: blur(25px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 16px;
-        padding: 16px 20px;
-        color: white;
-        width: 100%;
-        transition: all 0.4s ease;
-        font-size: 1.1rem;
-      }
-
-      .form-input:focus {
-        outline: none;
-        border-color: #f59e0b;
-        background: rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
-      }
-
-      .form-input::placeholder {
-        color: #94a3b8;
-        font-weight: 400;
-      }
-
-      /* Executive Contact Cards */
-      .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.5rem;
-        background: rgba(255, 255, 255, 0.04);
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.4s ease;
-      }
-
-      .contact-item:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.15);
-        transform: translateX(8px);
-      }
-
-      .contact-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: white;
-        background: var(--gold-gradient);
-        box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
-      }
-
-      /* Mobile Navigation Menu */
-      .mobile-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background: rgba(2, 6, 23, 0.98);
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
-        transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        z-index: 60;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-      }
-
-      .mobile-menu.active {
-        right: 0;
-      }
-
-      .mobile-menu-link {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: white;
-        text-decoration: none;
-        padding: 1rem 2rem;
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .mobile-menu-link::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: var(--gold-gradient);
-        transition: left 0.3s ease;
-        z-index: -1;
-      }
-
-      .mobile-menu-link:hover::before {
-        left: 0;
-      }
-
-      .mobile-menu-link:hover {
-        color: #0f172a;
-        transform: translateX(10px);
-      }
-
-      .hamburger {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        padding: 8px;
-        z-index: 70;
-        position: relative;
-      }
-
-      .hamburger span {
-        width: 25px;
-        height: 3px;
-        background: white;
-        margin: 3px 0;
-        transition: 0.3s;
-        border-radius: 2px;
-      }
-
-      .hamburger.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-      }
-
-      .hamburger.active span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .hamburger.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-      }
-
-      /* Enhanced Responsive Design */
-      @media (max-width: 1024px) {
-        .liquid-glass {
-          margin: 1.5rem;
-          padding: 3rem 2rem;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .liquid-glass {
-          margin: 1rem;
-          padding: 2rem 1.5rem;
-        }
-
-        .hero-title {
-          font-size: 2.5rem;
-          line-height: 1.2;
-        }
-
-        .hero-subtitle {
-          font-size: 1.1rem;
-          margin-bottom: 2rem;
-        }
-
-        .project-card {
-          padding: 1.5rem;
-          margin: 1rem 0;
-        }
-
-        .btn-primary,
-        .btn-secondary {
-          padding: 12px 24px;
-          font-size: 0.95rem;
-          width: 100%;
-          max-width: 280px;
-          text-align: center;
-        }
-
-        .nav-glass {
-           padding: 1rem 1.5rem;
-         }
-
-         .liquid-shape {
-           display: none;
-         }
-
-         /* Better mobile spacing */
-         section {
-           padding: 3rem 1rem !important;
-         }
-
-         .py-24 {
-           padding-top: 3rem !important;
-           padding-bottom: 3rem !important;
-         }
-
-         .py-20 {
-           padding-top: 2.5rem !important;
-           padding-bottom: 2.5rem !important;
-         }
-
-         .mb-20 {
-           margin-bottom: 2rem !important;
-         }
-
-         .mb-12 {
-           margin-bottom: 1.5rem !important;
-         }
-
-         .mt-16 {
-           margin-top: 2rem !important;
-         }
-
-         .gap-12 {
-           gap: 2rem !important;
-         }
-
-         .gap-8 {
-           gap: 1.5rem !important;
-         }
-
-         .gap-6 {
-           gap: 1rem !important;
-         }
-
-         /* Improve grid spacing */
-         .grid {
-           gap: 1.5rem !important;
-         }
-
-         /* Better button spacing */
-         .flex.flex-col.sm\\:flex-row {
-           gap: 1rem !important;
-         }
-       }
-
-      @media (max-width: 640px) {
-        .liquid-glass {
-          margin: 0.5rem;
-          padding: 1.5rem 1rem;
-          border-radius: 20px;
-        }
-
-        .hero-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-
-        .hero-subtitle {
-          font-size: 1rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .project-card {
-          padding: 1.25rem;
-          border-radius: 16px;
-        }
-
-        .btn-primary,
-        .btn-secondary {
-          padding: 14px 20px;
-          font-size: 0.9rem;
-          border-radius: 12px;
-        }
-
-        .social-link {
-          width: 45px;
-          height: 45px;
-          font-size: 1.1rem;
-        }
-
-        .tech-badge {
-          padding: 14px 18px;
-          font-size: 1.05rem;
-          min-height: 48px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 14px;
-          font-weight: 600;
-        }
-
-        .nav-glass {
-          padding: 0.75rem 1rem;
-        }
-
-        /* Improve touch targets */
-         .mobile-menu-link {
-           font-size: 1.25rem;
-           padding: 1.25rem 2rem;
-           min-height: 60px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-         }
-
-         /* Better mobile typography */
-         .hero-title {
-           font-size: clamp(2rem, 8vw, 2.5rem) !important;
-           line-height: 1.2;
-           margin-bottom: 1rem;
-         }
-
-         .hero-subtitle {
-           font-size: clamp(1rem, 4vw, 1.1rem) !important;
-           margin-bottom: 1.5rem;
-           line-height: 1.4;
-         }
-
-         .section-title {
-           font-size: clamp(2rem, 6vw, 2.5rem) !important;
-           line-height: 1.3;
-         }
-
-         .section-subtitle {
-           font-size: clamp(1rem, 3vw, 1.1rem) !important;
-           line-height: 1.5;
-           margin-bottom: 3rem;
-         }
-
-         /* Improve readability */
-         p, .text-lg {
-           font-size: 1rem !important;
-           line-height: 1.6;
-         }
-
-         .text-xl {
-           font-size: 1.1rem !important;
-           line-height: 1.5;
-         }
-
-         .text-2xl {
-           font-size: 1.25rem !important;
-         }
-
-         .text-3xl {
-           font-size: 1.5rem !important;
-         }
-       }
-
-      @media (max-width: 480px) {
-         .hero-title {
-           font-size: clamp(1.75rem, 10vw, 2rem) !important;
-           line-height: 1.1;
-         }
-
-         .hero-subtitle {
-           font-size: clamp(0.9rem, 4vw, 1rem) !important;
-           margin-bottom: 1.25rem;
-         }
-
-         .liquid-glass {
-           margin: 0.25rem;
-           padding: 1.25rem 0.75rem;
-         }
-
-         .project-card {
-           padding: 1rem;
-         }
-
-         .btn-primary,
-         .btn-secondary {
-           padding: 12px 16px;
-           font-size: 0.85rem;
-         }
-
-         /* Ultra-small screen typography */
-         .section-title {
-           font-size: clamp(1.5rem, 8vw, 2rem) !important;
-         }
-
-         .section-subtitle {
-           font-size: clamp(0.9rem, 4vw, 1rem) !important;
-         }
-
-         p, .text-lg {
-           font-size: 0.9rem !important;
-         }
-
-         .text-xl {
-           font-size: 1rem !important;
-         }
-
-         .text-2xl {
-           font-size: 1.1rem !important;
-         }
-
-         .text-3xl {
-           font-size: 1.25rem !important;
-         }
-
-         /* Improve avatar size */
-         .w-40.h-40 {
-           width: 8rem !important;
-           height: 8rem !important;
-         }
-
-         .text-5xl {
-           font-size: 2.5rem !important;
-         }
-       }
-
-      /* Scroll Animations */
-      .fade-in {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: all 1s ease-out;
-      }
-
-      .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Professional Social Links */
-      .social-link {
-        width: 56px;
-        height: 56px;
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.3rem;
-        transition: all 0.4s ease;
-        text-decoration: none;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .social-link::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--gold-gradient);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        z-index: -1;
-      }
-
-      .social-link:hover::before {
-        opacity: 1;
-      }
-
-      .social-link:hover {
-        color: #0f172a;
-        transform: translateY(-6px) scale(1.05);
-        box-shadow: 0 20px 40px rgba(245, 158, 11, 0.4);
-        border-color: rgba(245, 158, 11, 0.3);
-      }
-
-      .social-link i {
-        position: relative;
-        z-index: 1;
-      }
-
-      /* Mobile social links improvements */
-      @media (max-width: 768px) {
-        .social-link {
-          width: 60px;
-          height: 60px;
-          font-size: 1.4rem;
-          border-radius: 18px;
-          background: rgba(255, 255, 255, 0.12);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .social-link:hover {
-          transform: translateY(-4px) scale(1.08);
-          box-shadow: 0 12px 30px rgba(245, 158, 11, 0.35);
-        }
-      }
-
-      @media (max-width: 480px) {
-        .social-link {
-          width: 54px;
-          height: 54px;
-          font-size: 1.25rem;
-          border-radius: 16px;
-        }
-
-        .social-link:hover {
-          transform: translateY(-3px) scale(1.06);
-        }
-      }
-
-      /* Professional Badge Styling */
-      .tech-badge {
-        padding: 12px 20px;
-        border-radius: 16px;
-        font-size: 1rem;
-        font-weight: 600;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(20px);
-        transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.08);
-        color: white;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 44px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      }
-
-      .tech-badge:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.3);
-      }
-
-      /* Enhanced Button Styling for Better UX */
-      .btn-primary {
-        background: var(--gold-gradient);
-        color: #0f172a;
-        padding: 14px 28px;
-        border-radius: 12px;
-        font-weight: 600;
-        font-size: 1rem;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 50px;
-        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn-primary::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.5s;
-      }
-
-      .btn-primary:hover::before {
-        left: 100%;
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
-      }
-
-      .btn-secondary {
-        background: rgba(255, 255, 255, 0.08);
-        color: white;
-        padding: 14px 28px;
-        border-radius: 12px;
-        font-weight: 600;
-        font-size: 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 50px;
-        backdrop-filter: blur(20px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      }
-
-      .btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.3);
-        transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      }
-
-      /* Enhanced Card Styling */
-      .project-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 2rem;
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .project-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--gold-gradient);
-        transform: scaleX(0);
-        transition: transform 0.4s ease;
-      }
-
-      .project-card:hover::before {
-        transform: scaleX(1);
-      }
-
-      .project-card:hover {
-        transform: translateY(-8px);
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      }
-
-      /* Enhanced Section Titles */
-      .section-title {
-        position: relative;
-        display: inline-block;
-        margin-bottom: 2rem;
-      }
-
-      .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 3px;
-        background: var(--gold-gradient);
-        border-radius: 2px;
-      }
-
-      /* Enhanced Input Fields */
-      .form-input {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 16px 20px;
-        color: white;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(20px);
-        width: 100%;
-      }
-
-      .form-input:focus {
-        outline: none;
-        border-color: rgba(245, 158, 11, 0.5);
-        background: rgba(255, 255, 255, 0.08);
-        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
-      }
-
-      .form-input::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-      }
-
-      /* Enhanced Loading States */
-      .loading-shimmer {
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
-        background-size: 200% 100%;
-        animation: shimmer 2s infinite;
-      }
-
-      @keyframes shimmer {
-        0% { background-position: -200% 0; }
-        100% { background-position: 200% 0; }
-      }
-
-      /* Enhanced Scroll Indicators */
-      .scroll-indicator {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 4px;
-        background: var(--gold-gradient);
-        z-index: 9999;
-        transition: width 0.1s ease;
-      }
-
-      /* Enhanced Hover Effects for Interactive Elements */
-      .interactive-element {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: pointer;
-      }
-
-      .interactive-element:hover {
-        transform: translateY(-2px);
-      }
-
-      /* Enhanced Typography */
-      .enhanced-text {
-        line-height: 1.7;
-        letter-spacing: 0.025em;
-      }
-
-      /* Improved Focus States for Accessibility */
-      .focus-enhanced:focus {
-        outline: 2px solid rgba(245, 158, 11, 0.6);
-        outline-offset: 2px;
-        border-radius: 8px;
       }
     </style>
   </head>
-
-  <body>
-    <!-- Liquid Background -->
-    <div class="liquid-bg">
-      <div class="liquid-shape"></div>
-      <div class="liquid-shape"></div>
-      <div class="liquid-shape"></div>
-      <div class="liquid-shape"></div>
-    </div>
-
+  <body
+    class="antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden"
+  >
     <!-- Navigation -->
-    <nav class="nav-glass fixed top-0 left-0 right-0 z-50 px-6 py-4">
-      <div class="max-w-7xl mx-auto flex items-center justify-between">
-        <div class="text-white font-bold text-2xl">
-          <span class="font-playfair">TK</span>
-        </div>
+    <nav
+      class="fixed top-0 w-full z-50 border-b border-white/5 bg-background/80 backdrop-blur-md"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <a
+          href="#"
+          class="font-display font-bold text-xl tracking-tight text-white hover:text-indigo-400 transition-colors"
+          >TK.</a
+        >
 
-        <div class="hidden md:flex items-center space-x-10">
-          <a
-            href="#home"
-            class="nav-link text-white hover:text-gold-400 transition-colors"
-            >Home</a
-          >
+        <div
+          class="hidden md:flex items-center gap-1 bg-white/5 rounded-full p-1 border border-white/5 backdrop-blur-sm"
+        >
           <a
             href="#about"
-            class="nav-link text-white hover:text-gold-400 transition-colors"
+            class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
             >About</a
           >
           <a
-            href="#skills"
-            class="nav-link text-white hover:text-gold-400 transition-colors"
-            >Skills</a
+            href="#experience"
+            class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
+            >Experience</a
           >
           <a
             href="#projects"
-            class="nav-link text-white hover:text-gold-400 transition-colors"
+            class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
             >Projects</a
           >
           <a
             href="#contact"
-            class="nav-link text-white hover:text-gold-400 transition-colors"
+            class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
             >Contact</a
           >
         </div>
 
-        <div class="md:hidden">
-          <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
+        <a
+          href="https://github.com/Taha-Karimi"
+          target="_blank"
+          class="hidden md:block text-gray-400 hover:text-white transition-colors"
+        >
+          <i class="fab fa-github text-xl"></i>
+        </a>
+
+        <button
+          id="menu-btn"
+          class="md:hidden text-white focus:outline-none p-2"
+        >
+          <i class="fas fa-bars text-xl"></i>
+        </button>
       </div>
 
       <!-- Mobile Menu -->
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="#home" class="mobile-menu-link">Home</a>
-        <a href="#about" class="mobile-menu-link">About</a>
-        <a href="#skills" class="mobile-menu-link">Skills</a>
-        <a href="#projects" class="mobile-menu-link">Projects</a>
-        <a href="#contact" class="mobile-menu-link">Contact</a>
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden absolute top-16 left-0 w-full bg-background border-b border-white/5 p-4 flex-col space-y-2 shadow-2xl"
+      >
+        <a
+          href="#about"
+          class="block px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg"
+          >About</a
+        >
+        <a
+          href="#experience"
+          class="block px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg"
+          >Experience</a
+        >
+        <a
+          href="#projects"
+          class="block px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg"
+          >Projects</a
+        >
+        <a
+          href="#contact"
+          class="block px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg"
+          >Contact</a
+        >
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section
-      id="home"
-      class="min-h-screen flex items-center justify-center px-6 pt-20 relative"
-    >
-      <!-- Floating 3D Elements -->
-      <div class="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full opacity-20 animate-float3D" style="animation-delay: 0s;"></div>
-      <div class="absolute top-40 right-20 w-16 h-16 bg-gradient-to-r from-gold-500 to-orange-600 transform rotate-45 opacity-20 animate-float3D" style="animation-delay: 2s;"></div>
-      <div class="absolute bottom-32 left-20 w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full opacity-20 animate-float3D" style="animation-delay: 4s;"></div>
-      <div class="absolute bottom-20 right-32 w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 transform rotate-12 opacity-20 animate-float3D" style="animation-delay: 6s;"></div>
-
-      <div
-        class="liquid-glass rounded-3xl p-16 max-w-5xl mx-auto text-center fade-in relative z-10"
-      >
-        <div class="mb-12">
+    <main class="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
+      <!-- Hero Section -->
+      <section class="min-h-[80vh] flex flex-col justify-center mb-20">
+        <div class="max-w-4xl">
           <div
-            class="w-40 h-40 mx-auto mb-8 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 p-1 animate-pulse-soft relative"
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-medium mb-6"
           >
-            <div
-              class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center relative overflow-hidden"
-            >
-              <i class="fas fa-code text-5xl text-gold-400 relative z-10"></i>
-              <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 animate-pulse"></div>
-            </div>
+            <span
+              class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"
+            ></span>
+            Open to work
           </div>
 
-          <h1 class="hero-title mb-6">Taha Karimi</h1>
-          <p class="hero-subtitle">Frontend Developer & Blockchain Specialist</p>
-
-          <div
-            class="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          <h1
+            class="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[1.1]"
           >
-            <a href="#projects" class="btn-primary group">
-              <i class="fas fa-rocket mr-2 group-hover:animate-bounce"></i>
-              View My Work
+            Building the <br />
+            <span class="gradient-text">decentralized web</span>
+          </h1>
+
+          <p
+            class="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl leading-relaxed"
+          >
+            Hi, I'm <span class="text-white font-semibold">Taha Karimi</span>. I
+            craft high-performance frontend interfaces and seamless blockchain
+            integrations using React, Next.js, and Web3 technologies.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#contact"
+              class="px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-indigo-50 transition-colors flex items-center gap-2"
+            >
+              Let's Talk
+              <i
+                class="fas fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform"
+              ></i>
             </a>
-            <a href="#contact" class="btn-secondary group">
-              <i class="fas fa-envelope mr-2 group-hover:animate-pulse"></i>
-              Get In Touch
+            <a
+              href="#projects"
+              class="px-8 py-4 glass-card text-white rounded-full font-medium hover:bg-white/10 transition-colors border border-white/10"
+            >
+              View Work
             </a>
           </div>
-        </div>
-        
-        <!-- Tech Stack Preview -->
-        <!-- Tech Stack Preview -->
-        <div class="mt-16 flex flex-wrap justify-center gap-6 opacity-80">
-          <div class="px-6 py-3 bg-gradient-to-r from-blue-500/25 to-purple-500/25 rounded-2xl border border-blue-500/40 backdrop-blur-sm hover:scale-110 hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-blue-500/25">
-            <span class="text-blue-300 text-base font-mono font-semibold">React.js</span>
-          </div>
-          <div class="px-6 py-3 bg-gradient-to-r from-gold-500/25 to-orange-500/25 rounded-2xl border border-gold-500/40 backdrop-blur-sm hover:scale-110 hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-gold-500/25">
-            <span class="text-gold-300 text-base font-mono font-semibold">Blockchain</span>
-          </div>
-          <div class="px-6 py-3 bg-gradient-to-r from-green-500/25 to-cyan-500/25 rounded-2xl border border-green-500/40 backdrop-blur-sm hover:scale-110 hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-green-500/25">
-            <span class="text-green-300 text-base font-mono font-semibold">TypeScript</span>
-          </div>
-          <div class="px-6 py-3 bg-gradient-to-r from-purple-500/25 to-pink-500/25 rounded-2xl border border-purple-500/40 backdrop-blur-sm hover:scale-110 hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-purple-500/25">
-            <span class="text-purple-300 text-base font-mono font-semibold">Next.js</span>
-          </div>
-        </div>
 
-        <!-- Social Links -->
-        <div class="flex justify-center items-center gap-6 mt-12 flex-wrap">
-          <a
-            href="https://www.linkedin.com/in/taha-karimi-b6b134328/"
-            class="social-link group"
-          >
-            <i class="fab fa-linkedin group-hover:animate-bounce"></i>
-          </a>
-          <a href="https://github.com/Taha-Karimi" class="social-link group">
-            <i class="fab fa-github group-hover:animate-spin"></i>
-          </a>
-          <a href="https://x.com/the_Tahak" class="social-link group">
-            <i class="fab fa-twitter group-hover:animate-pulse"></i>
-          </a>
-          <a href="https://t.me/itstahak" class="social-link group">
-            <i class="fab fa-telegram group-hover:animate-bounce"></i>
-          </a>
-          <a href="mailto:thetahakarimi@gmail.com" class="social-link group">
-            <i class="fas fa-envelope group-hover:animate-pulse"></i>
-          </a>
-        </div>
-        </div>
-
-
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 px-6">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-20">
-          <h2 class="section-title text-5xl font-playfair font-bold text-white mb-6">
-            About Me
-          </h2>
-          <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            👋 React & Next.js Developer with proven experience in building
-            scalable, high-performance web applications across Web3, fintech,
-            and SaaS. Skilled in designing responsive user interfaces,
-            implementing secure architectures, and delivering real-time,
-            data-driven features.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12">
-          <div class="liquid-glass rounded-3xl p-10 slide-up">
-            <div class="mb-8">
-              <div
-                class="w-16 h-16 rounded-2xl bg-gradient-to-r from-gold-500 to-gold-600 flex items-center justify-center mb-6"
-              >
-                <i class="fas fa-user-tie text-2xl text-white"></i>
-              </div>
-              <h3 class="text-3xl font-playfair font-bold text-white mb-6">
-                Professional Journey
-              </h3>
-            </div>
-            <p class="text-gray-300 leading-relaxed text-lg mb-6">
-              💼 Adept at modular component development, API integrations, and
-              blockchain wallet connectivity, with a strong focus on user
-              experience and performance optimization. Proven track record in
-              Web3 gaming platforms and cryptocurrency exchange applications.
-            </p>
-            <div class="space-y-4">
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-gold-400 mr-3"></i>
-                <span>React & Next.js Development</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-gold-400 mr-3"></i>
-                <span>Web3 & Blockchain Integration</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-gold-400 mr-3"></i>
-                <span>Performance Optimization</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="liquid-glass rounded-3xl p-10 slide-up">
-            <div class="mb-8">
-              <div
-                class="w-16 h-16 rounded-2xl bg-gradient-to-r from-platinum-500 to-platinum-600 flex items-center justify-center mb-6"
-              >
-                <i class="fas fa-cogs text-2xl text-white"></i>
-              </div>
-              <h3 class="text-3xl font-playfair font-bold text-white mb-6">
-                Services
-              </h3>
-            </div>
-            <div class="space-y-6">
-              <div class="border-l-4 border-gold-400 pl-6">
-                <h4 class="text-xl font-semibold text-white mb-2">
-                  Web Development
-                </h4>
-                <p class="text-gray-300">
-                  Modern, responsive websites and web applications using
-                  cutting-edge technologies.
-                </p>
-              </div>
-              <div class="border-l-4 border-gold-400 pl-6">
-                <h4 class="text-xl font-semibold text-white mb-2">
-                  UI/UX Design
-                </h4>
-                <p class="text-gray-300">
-                  Creating intuitive and engaging user interfaces with focus on
-                  user experience.
-                </p>
-              </div>
-              <div class="border-l-4 border-platinum-400 pl-6">
-                <h4 class="text-xl font-semibold text-white mb-2">
-                  Consulting
-                </h4>
-                <p class="text-gray-300">
-                  Technical consultation and architecture planning for frontend
-                  projects.
-                </p>
-              </div>
-            </div>
+          <div class="mt-16 flex items-center gap-8 text-gray-500">
+            <a
+              href="https://github.com/Taha-Karimi"
+              class="hover:text-white transition-colors transform hover:scale-110 duration-200"
+              ><i class="fab fa-github text-2xl"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/taha-karimi-b6b134328/"
+              class="hover:text-white transition-colors transform hover:scale-110 duration-200"
+              ><i class="fab fa-linkedin text-2xl"></i
+            ></a>
+            <a
+              href="https://x.com/the_Tahak"
+              class="hover:text-white transition-colors transform hover:scale-110 duration-200"
+              ><i class="fab fa-twitter text-2xl"></i
+            ></a>
+            <a
+              href="https://t.me/itstahak"
+              class="hover:text-white transition-colors transform hover:scale-110 duration-200"
+              ><i class="fab fa-telegram text-2xl"></i
+            ></a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Professional Experience Section -->
-    <section id="experience" class="py-24 px-6">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-20">
-          <h2 class="section-title text-5xl font-playfair font-bold text-white mb-6">
-            💼 Professional Experience
-          </h2>
-          <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Real-world projects showcasing expertise in React, Next.js, and Web3
-            technologies
-          </p>
-        </div>
+      <!-- Bento Grid About/Skills -->
+      <section id="about" class="mb-32">
+        <h2
+          class="font-display text-3xl font-bold mb-10 flex items-center gap-3"
+        >
+          <span class="w-8 h-[2px] bg-indigo-500"></span> About Me
+        </h2>
 
-        <div class="space-y-12">
-          <!-- Galaxuim Project -->
-          <div class="liquid-glass rounded-3xl p-10 slide-up">
-            <div class="grid md:grid-cols-3 gap-8">
-              <div class="md:col-span-1">
-                <div
-                  class="w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center mb-6"
-                >
-                  <i class="fas fa-gamepad text-2xl text-white"></i>
-                </div>
-                <h3 class="text-2xl font-playfair font-bold text-white mb-4">
-                  Galaxuim – Web3 Gaming Platform
-                </h3>
-                <p class="text-gold-400 font-semibold mb-4">
-                  React.js Developer
-                </p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                  <span
-                    class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm"
-                    >React</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm"
-                    >React Router</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm"
-                    >TailwindCSS</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm"
-                    >MUI</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm"
-                    >Framer Motion</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm"
-                    >Chart.js</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm"
-                    >Solana Web3.js</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm"
-                    >Ethers.js</span
-                  >
-                </div>
-              </div>
-              <div class="md:col-span-2">
-                <div class="space-y-4">
-                  <div class="flex items-start">
-                    <i class="fas fa-check-circle text-gold-400 mr-3 mt-1"></i>
-                    <p class="text-gray-300">
-                      Engineered a multi-game Web3 platform with NFT-style
-                      collectibles and multi-blockchain wallet integration.
-                    </p>
-                  </div>
-                  <div class="flex items-start">
-                    <i class="fas fa-check-circle text-gold-400 mr-3 mt-1"></i>
-                    <p class="text-gray-300">
-                      Designed and deployed a responsive, animated UI,
-                      increasing engagement through Framer Motion-powered
-                      interactions.
-                    </p>
-                  </div>
-                  <div class="flex items-start">
-                    <i class="fas fa-check-circle text-gold-400 mr-3 mt-1"></i>
-                    <p class="text-gray-300">
-                      Delivered real-time rewards, quests, and social features,
-                      improving retention by enhancing user experience.
-                    </p>
-                  </div>
-                  <div class="flex items-start">
-                    <i class="fas fa-check-circle text-gold-400 mr-3 mt-1"></i>
-                    <p class="text-gray-300">
-                      Implemented modular, lazy-loaded architecture, improving
-                      load speed and scalability.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Crypto Exchange Project -->
-          <div class="liquid-glass rounded-3xl p-10 slide-up">
-            <div class="grid md:grid-cols-3 gap-8">
-              <div class="md:col-span-1">
-                <div
-                  class="w-16 h-16 rounded-2xl bg-gradient-to-r from-gold-500 to-gold-600 flex items-center justify-center mb-6"
-                >
-                  <i class="fas fa-coins text-2xl text-white"></i>
-                </div>
-                <h3 class="text-2xl font-playfair font-bold text-white mb-4">
-                  Crypto Exchange Platform
-                </h3>
-                <p class="text-gold-400 font-semibold mb-4">
-                  Frontend Developer (Next.js, TypeScript)
-                </p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                  <span
-                    class="px-3 py-1 bg-black/30 text-white rounded-full text-sm"
-                    >Next.js</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm"
-                    >React</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-sm"
-                    >TypeScript</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm"
-                    >TailwindCSS</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm"
-                    >Ethers.js</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm"
-                    >WebSockets</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm"
-                    >SWR</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm"
-                    >Dexie.js</span
-                  >
-                </div>
-              </div>
-              <div class="md:col-span-2">
-                <div class="space-y-4">
-                  <div class="flex items-start">
-                    <i class="fas fa-check-circle text-gold-400 mr-3 mt-1"></i>
-                    <p class="text-gray-300">
-                      Developed a cryptocurrency exchange app with real-time
-                      trading features and wallet management (deposit/withdraw).
-                    </p>
-                  </div>
-                  <div class="flex items-start">
-                    <i class="fas fa-check-circle text-gold-400 mr-3 mt-1"></i>
-                    <p class="text-gray-300">
-                      Integrated WebSocket-based live updates and custom hooks
-                      for efficient state management.
-                    </p>
-                  </div>
-                  <div class="flex items-start">
-                    <i class="fas fa-check-circle text-gold-400 mr-3 mt-1"></i>
-                    <p class="text-gray-300">
-                      Implemented multi-language support (i18n) and dark/light
-                      themes, enhancing accessibility.
-                    </p>
-                  </div>
-                  <div class="flex items-start">
-                    <i class="fas fa-check-circle text-gold-400 mr-3 mt-1"></i>
-                    <p class="text-gray-300">
-                      Built a secure, component-driven architecture with Context
-                      API and SWR for scalable development.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-24 px-6 bg-slate-900/30">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-20">
-          <h2 class="section-title text-5xl font-playfair font-bold text-white mb-6">
-            🛠 Technical Skills
-          </h2>
-          <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive expertise in modern web technologies, blockchain
-            integration, and performance optimization
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- Frontend Development -->
-          <div class="liquid-glass rounded-3xl p-8 slide-up">
-            <div class="mb-8">
-              <div
-                class="w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mb-6"
-              >
-                <i class="fas fa-code text-2xl text-white"></i>
-              </div>
-              <h3 class="text-xl font-playfair font-bold text-white mb-6">
-                Frontend Development
-              </h3>
-            </div>
-            <div class="space-y-3">
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-blue-400 mr-3"></i>
-                <span>React.js</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-blue-400 mr-3"></i>
-                <span>Next.js</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-blue-400 mr-3"></i>
-                <span>TypeScript</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-blue-400 mr-3"></i>
-                <span>Redux</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-blue-400 mr-3"></i>
-                <span>Context API</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- UI & UX Design -->
-          <div class="liquid-glass rounded-3xl p-8 slide-up">
-            <div class="mb-8">
-              <div
-                class="w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center mb-6"
-              >
-                <i class="fas fa-palette text-2xl text-white"></i>
-              </div>
-              <h3 class="text-xl font-playfair font-bold text-white mb-6">
-                UI & UX Design
-              </h3>
-            </div>
-            <div class="space-y-3">
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-purple-400 mr-3"></i>
-                <span>TailwindCSS</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-purple-400 mr-3"></i>
-                <span>Material-UI (MUI)</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-purple-400 mr-3"></i>
-                <span>Styled-components</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-purple-400 mr-3"></i>
-                <span>Responsive Design</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-purple-400 mr-3"></i>
-                <span>Framer Motion</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-purple-400 mr-3"></i>
-                <span>Chart.js</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Blockchain & Web3 -->
-          <div class="liquid-glass rounded-3xl p-8 slide-up">
-            <div class="mb-8">
-              <div
-                class="w-16 h-16 rounded-2xl bg-gradient-to-r from-gold-500 to-gold-600 flex items-center justify-center mb-6"
-              >
-                <i class="fas fa-link text-2xl text-white"></i>
-              </div>
-              <h3 class="text-xl font-playfair font-bold text-white mb-6">
-                Blockchain & Web3
-              </h3>
-            </div>
-            <div class="space-y-3">
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-gold-400 mr-3"></i>
-                <span>Ethers.js</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-gold-400 mr-3"></i>
-                <span>Solana Web3.js</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-gold-400 mr-3"></i>
-                <span>Wallet Integration</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-gold-400 mr-3"></i>
-                <span>NFT Mechanics</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Data & State Management -->
-          <div class="liquid-glass rounded-3xl p-8 slide-up">
-            <div class="mb-8">
-              <div
-                class="w-16 h-16 rounded-2xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mb-6"
-              >
-                <i class="fas fa-database text-2xl text-white"></i>
-              </div>
-              <h3 class="text-xl font-playfair font-bold text-white mb-6">
-                Data & State Management
-              </h3>
-            </div>
-            <div class="space-y-3">
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                <span>WebSockets</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                <span>SWR</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                <span>Dexie.js</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                <span>REST APIs</span>
-              </div>
-              <div class="flex items-center text-gray-300">
-                <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                <span>GraphQL</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testing & Tools Section -->
-        <div class="mt-16">
-          <div class="liquid-glass rounded-3xl p-10 slide-up max-w-4xl mx-auto">
-            <div class="text-center mb-8">
-              <div
-                class="w-16 h-16 rounded-2xl bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center mb-6 mx-auto"
-              >
-                <i class="fas fa-tools text-2xl text-white"></i>
-              </div>
-              <h3 class="text-2xl font-playfair font-bold text-white mb-6">
-                Testing & Tools
-              </h3>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-              <div class="text-center">
-                <h4 class="text-lg font-semibold text-white mb-4">Testing</h4>
-                <div class="space-y-2">
-                  <div class="flex items-center justify-center text-gray-300">
-                    <i class="fas fa-check-circle text-red-400 mr-2"></i>
-                    <span>Jest</span>
-                  </div>
-                  <div class="flex items-center justify-center text-gray-300">
-                    <i class="fas fa-check-circle text-red-400 mr-2"></i>
-                    <span>React Testing Library</span>
-                  </div>
-                </div>
-              </div>
-              <div class="text-center">
-                <h4 class="text-lg font-semibold text-white mb-4">
-                  Version Control
-                </h4>
-                <div class="space-y-2">
-                  <div class="flex items-center justify-center text-gray-300">
-                    <i class="fas fa-check-circle text-red-400 mr-2"></i>
-                    <span>Git</span>
-                  </div>
-                  <div class="flex items-center justify-center text-gray-300">
-                    <i class="fas fa-check-circle text-red-400 mr-2"></i>
-                    <span>CI/CD</span>
-                  </div>
-                </div>
-              </div>
-              <div class="text-center">
-                <h4 class="text-lg font-semibold text-white mb-4">DevOps</h4>
-                <div class="space-y-2">
-                  <div class="flex items-center justify-center text-gray-300">
-                    <i class="fas fa-check-circle text-red-400 mr-2"></i>
-                    <span>DevOps fundamentals</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Career Objective Section -->
-    <section id="career-objective" class="py-20 px-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16 fade-in">
-          <h2 class="section-title text-5xl font-playfair font-bold text-white mb-6">
-            🎯 Career Objective
-          </h2>
-          <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            My professional vision and goals for the future
-          </p>
-        </div>
-
-        <div class="liquid-glass rounded-3xl p-12 slide-up text-center">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Bio Card -->
           <div
-            class="w-20 h-20 rounded-2xl bg-gradient-to-r from-gold-500 to-gold-600 flex items-center justify-center mb-8 mx-auto"
+            class="md:col-span-2 glass-card p-8 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-colors"
           >
-            <i class="fas fa-bullseye text-3xl text-white"></i>
-          </div>
-          <p class="text-xl text-gray-300 leading-relaxed font-light">
-            To leverage expertise in React, Next.js, and Web3 technologies to
-            build cutting-edge, scalable applications in fintech and SaaS
-            industries, while continuously enhancing performance, security, and
-            user experience.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16 fade-in">
-          <h2 class="text-4xl font-bold text-white mb-4">
-            🚀 Technology Showcase
-          </h2>
-          <p class="text-xl text-slate-300">
-            Demonstrating expertise through technology implementations
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="project-card fade-in">
-            <div
-              class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mb-4"
-            >
-              <i class="fas fa-react text-white text-xl"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">
-              React Component Library
-            </h3>
-            <p class="text-slate-300 mb-4">
-              Comprehensive component library featuring reusable UI components
-              with TypeScript support, Storybook documentation, and automated
-              testing. Includes form controls, data visualization, and
-              responsive layout components.
+            <h3 class="text-xl font-bold text-white mb-4">The Developer</h3>
+            <p class="text-gray-400 leading-relaxed mb-6">
+              I specialize in building scalable, high-performance web
+              applications across Web3, fintech, and SaaS sectors. With deep
+              expertise in the React ecosystem, I bridge the gap between complex
+              backend logic and intuitive user interfaces.
             </p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2">
               <span
-                class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm"
-                >React 18</span
+                class="px-3 py-1 bg-indigo-500/10 text-indigo-300 rounded-lg text-sm border border-indigo-500/20"
+                >Frontend Architecture</span
               >
               <span
-                class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-sm"
-                >TypeScript</span
+                class="px-3 py-1 bg-purple-500/10 text-purple-300 rounded-lg text-sm border border-purple-500/20"
+                >Web3 Integration</span
               >
               <span
-                class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm"
-                >Tailwind</span
+                class="px-3 py-1 bg-blue-500/10 text-blue-300 rounded-lg text-sm border border-blue-500/20"
+                >Performance Optimization</span
               >
-              <span
-                class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm"
-                >Storybook</span
-              >
-              <span
-                class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm"
-                >Jest</span
-              >
-            </div>
-            <div class="flex space-x-4">
-              <span class="text-gray-400 text-sm">
-                <i class="fas fa-code"></i> Component Architecture
-              </span>
             </div>
           </div>
 
-          <div class="project-card fade-in">
-            <div
-              class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4"
-            >
-              <i class="fas fa-chart-line text-white text-xl"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">
-              Real-time Dashboard
-            </h3>
-            <p class="text-slate-300 mb-4">
-              Interactive dashboard with real-time data visualization, WebSocket
-              connections, responsive charts, and dynamic filtering. Features
-              include data export, customizable widgets, and performance
-              optimization.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span
-                class="px-3 py-1 bg-gray-500/20 text-gray-300 rounded-full text-sm"
-                >Next.js</span
-              >
-              <span
-                class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm"
-                >React</span
-              >
-              <span
-                class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm"
-                >Chart.js</span
-              >
-              <span
-                class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm"
-                >WebSockets</span
-              >
-              <span
-                class="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm"
-                >SWR</span
-              >
-            </div>
-            <div class="flex space-x-4">
-              <span class="text-gray-400 text-sm">
-                <i class="fas fa-tachometer-alt"></i> Performance Optimized
-              </span>
+          <!-- Tech Stack Card -->
+          <div
+            class="glass-card p-8 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-colors"
+          >
+            <h3 class="text-xl font-bold text-white mb-6">Tech Stack</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex items-center gap-3 text-gray-400">
+                <i class="fab fa-react text-cyan-400"></i> React
+              </div>
+              <div class="flex items-center gap-3 text-gray-400">
+                <i class="fas fa-bolt text-yellow-400"></i> Next.js
+              </div>
+              <div class="flex items-center gap-3 text-gray-400">
+                <i class="fab fa-js text-yellow-300"></i> TypeScript
+              </div>
+              <div class="flex items-center gap-3 text-gray-400">
+                <i class="fas fa-cube text-indigo-400"></i> Web3.js
+              </div>
+              <div class="flex items-center gap-3 text-gray-400">
+                <i class="fas fa-wind text-cyan-300"></i> Tailwind
+              </div>
+              <div class="flex items-center gap-3 text-gray-400">
+                <i class="fas fa-database text-green-400"></i> GraphQL
+              </div>
             </div>
           </div>
 
-          <div class="project-card fade-in">
+          <!-- Stats/Services -->
+          <div class="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div
-              class="w-12 h-12 bg-gradient-to-r from-gold-500 to-yellow-500 rounded-lg flex items-center justify-center mb-4"
+              class="glass-card p-6 rounded-2xl text-center border border-white/5 hover:bg-white/5 transition-colors"
             >
-              <i class="fas fa-link text-white text-xl"></i>
+              <div class="text-4xl font-bold text-white mb-1">3+</div>
+              <div class="text-sm text-gray-500">Years Experience</div>
             </div>
-            <h3 class="text-xl font-bold text-white mb-3">
-              Web3 Integration Demo
-            </h3>
-            <p class="text-slate-300 mb-4">
-              Blockchain integration showcase featuring wallet connectivity,
-              smart contract interactions, and multi-chain support. Demonstrates
-              secure transaction handling and decentralized application
-              patterns.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span
-                class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm"
-                >Ethers.js</span
-              >
-              <span
-                class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm"
-                >Solana Web3</span
-              >
-              <span
-                class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm"
-                >React</span
-              >
-              <span
-                class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm"
-                >Tailwind</span
-              >
+            <div
+              class="glass-card p-6 rounded-2xl text-center border border-white/5 hover:bg-white/5 transition-colors"
+            >
+              <div class="text-4xl font-bold text-white mb-1">15+</div>
+              <div class="text-sm text-gray-500">Projects Delivered</div>
             </div>
-            <div class="flex space-x-4">
-              <span class="text-gray-400 text-sm">
-                <i class="fas fa-shield-alt"></i> Secure Implementation
-              </span>
+            <div
+              class="glass-card p-6 rounded-2xl text-center border border-white/5 hover:bg-white/5 transition-colors"
+            >
+              <div class="text-4xl font-bold text-white mb-1">100%</div>
+              <div class="text-sm text-gray-500">Client Satisfaction</div>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Technology Focus Section -->
-        <div class="mt-16 text-center">
-          <div class="liquid-glass rounded-3xl p-8 max-w-4xl mx-auto">
-            <h3 class="text-2xl font-playfair font-bold text-white mb-6">
-              🔧 Technical Implementations
-            </h3>
-            <p class="text-lg text-gray-300 mb-8 leading-relaxed">
-              Focused on building scalable, performant applications using modern
-              web technologies. Expertise in component architecture, state
-              management, API integration, and user experience optimization.
-            </p>
-            <div class="grid md:grid-cols-3 gap-6">
-              <div class="text-center">
-                <div
-                  class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-4 mx-auto"
-                >
-                  <i class="fas fa-cogs text-white"></i>
+      <!-- Experience Section -->
+      <section id="experience" class="mb-32">
+        <h2
+          class="font-display text-3xl font-bold mb-10 flex items-center gap-3"
+        >
+          <span class="w-8 h-[2px] bg-purple-500"></span> Experience
+        </h2>
+
+        <div
+          class="relative border-l border-white/10 ml-3 md:ml-6 space-y-12 pl-8 md:pl-12"
+        >
+          <!-- Job 1 -->
+          <div class="relative group">
+            <span
+              class="absolute -left-[41px] md:-left-[57px] top-2 w-5 h-5 rounded-full border-4 border-background bg-indigo-500 group-hover:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(99,102,241,0.5)]"
+            ></span>
+            <div
+              class="glass-card p-8 rounded-2xl border border-white/5 group-hover:border-indigo-500/30 transition-colors"
+            >
+              <div
+                class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2"
+              >
+                <div>
+                  <h3 class="text-xl font-bold text-white">
+                    React.js Developer
+                  </h3>
+                  <div class="text-indigo-400 font-medium">
+                    Galaxuim – Web3 Gaming Platform
+                  </div>
                 </div>
-                <h4 class="text-white font-semibold mb-2">
-                  Architecture Design
-                </h4>
-                <p class="text-gray-400 text-sm">
-                  Modular, scalable component structures
+                <span
+                  class="text-sm text-gray-500 bg-white/5 px-3 py-1 rounded-full w-fit"
+                  >Web3 Gaming</span
+                >
+              </div>
+              <p class="text-gray-400 mb-6 leading-relaxed">
+                Engineered a multi-game Web3 platform with NFT-style
+                collectibles and multi-blockchain wallet integration. Designed
+                and deployed a responsive, animated UI using Framer Motion to
+                deliver real-time rewards, quests, and social features.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
+                  >React</span
+                >
+                <span
+                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
+                  >Solana</span
+                >
+                <span
+                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
+                  >Ethers.js</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div class="relative group">
+            <span
+              class="absolute -left-[41px] md:-left-[57px] top-2 w-5 h-5 rounded-full border-4 border-background bg-purple-500 group-hover:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(236,72,153,0.5)]"
+            ></span>
+            <div
+              class="glass-card p-8 rounded-2xl border border-white/5 group-hover:border-purple-500/30 transition-colors"
+            >
+              <div
+                class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2"
+              >
+                <div>
+                  <h3 class="text-xl font-bold text-white">
+                    Frontend Developer
+                  </h3>
+                  <div class="text-purple-400 font-medium">
+                    Crypto Exchange Platform
+                  </div>
+                </div>
+                <span
+                  class="text-sm text-gray-500 bg-white/5 px-3 py-1 rounded-full w-fit"
+                  >Fintech</span
+                >
+              </div>
+              <p class="text-gray-400 mb-6 leading-relaxed">
+                Developed a cryptocurrency exchange app with real-time trading
+                features and wallet management. Integrated WebSocket-based live
+                updates, custom hooks for state management, and multi-language
+                support (i18n).
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
+                  >Next.js</span
+                >
+                <span
+                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
+                  >WebSockets</span
+                >
+                <span
+                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
+                  >TypeScript</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="mb-32">
+        <h2
+          class="font-display text-3xl font-bold mb-10 flex items-center gap-3"
+        >
+          <span class="w-8 h-[2px] bg-pink-500"></span> Featured Projects
+        </h2>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Project 1 -->
+          <div
+            class="glass-card p-1 rounded-2xl group hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div
+              class="bg-gradient-to-br from-gray-900 to-black rounded-xl p-6 h-full flex flex-col relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition-colors"
+              ></div>
+
+              <div class="mb-6">
+                <i class="fas fa-cubes text-3xl text-indigo-400 mb-4"></i>
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Component Library
+                </h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                  Reusable UI components with TypeScript support, Storybook
+                  documentation, and automated testing for scalable apps.
                 </p>
               </div>
-              <div class="text-center">
-                <div
-                  class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center mb-4 mx-auto"
-                >
-                  <i class="fas fa-rocket text-white"></i>
-                </div>
-                <h4 class="text-white font-semibold mb-2">Performance</h4>
-                <p class="text-gray-400 text-sm">
-                  Optimized loading and rendering
-                </p>
-              </div>
-              <div class="text-center">
-                <div
-                  class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mb-4 mx-auto"
-                >
-                  <i class="fas fa-users text-white"></i>
-                </div>
-                <h4 class="text-white font-semibold mb-2">User Experience</h4>
-                <p class="text-gray-400 text-sm">
-                  Intuitive, responsive interfaces
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16 fade-in">
-          <h2 class="text-4xl font-bold text-white mb-4">Get In Touch</h2>
-          <p class="text-xl text-slate-300">Let's discuss your next project</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12">
-          <div class="liquid-glass rounded-2xl p-8 fade-in">
-            <h3 class="text-2xl font-bold text-white mb-6">
-              Contact Information
-            </h3>
-
-            <div class="space-y-6">
-              <div class="flex items-center space-x-4">
-                <div
-                  class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center"
+              <div
+                class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center"
+              >
+                <span class="text-xs font-mono text-gray-500"
+                  >React • Storybook</span
                 >
-                  <i class="fas fa-envelope text-white"></i>
-                </div>
-                <div>
-                  <h4 class="text-white font-semibold">Email</h4>
-                  <p class="text-slate-400">
-                    <a
-                      href="mailto:thetahakarimi@gmail.com"
-                      class="hover:text-purple-400 transition-colors duration-300"
-                    >
-                      thetahakarimi@gmail.com
-                    </a>
-                  </p>
-                </div>
-              </div>
-
-              <!-- <div class="flex items-center space-x-4">
-                <div
-                  class="w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center"
-                >
-                  <i class="fas fa-phone text-white"></i>
-                </div>
-                <div>
-                  <h4 class="text-white font-semibold">Phone</h4>
-                  <p class="text-slate-400">+1 (555) 123-4567</p>
-                </div>
-              </div> -->
-
-              <div class="flex items-center space-x-4">
-                <div
-                  class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center"
-                >
-                  <i class="fas fa-map-marker-alt text-white"></i>
-                </div>
-                <div>
-                  <h4 class="text-white font-semibold">Location</h4>
-                  <p class="text-slate-400">TEHRAN, IR</p>
-                </div>
+                <a
+                  href="#"
+                  class="text-white hover:text-indigo-400 transition-colors"
+                  ><i class="fas fa-external-link-alt"></i
+                ></a>
               </div>
             </div>
           </div>
 
-          <div class="liquid-glass rounded-2xl p-8 fade-in">
-            <form class="space-y-6">
-              <div>
+          <!-- Project 2 -->
+          <div
+            class="glass-card p-1 rounded-2xl group hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div
+              class="bg-gradient-to-br from-gray-900 to-black rounded-xl p-6 h-full flex flex-col relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-colors"
+              ></div>
+
+              <div class="mb-6">
+                <i class="fas fa-chart-pie text-3xl text-purple-400 mb-4"></i>
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Real-time Dashboard
+                </h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                  Interactive dashboard with WebSocket connections, responsive
+                  charts, and dynamic filtering for data visualization.
+                </p>
+              </div>
+
+              <div
+                class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center"
+              >
+                <span class="text-xs font-mono text-gray-500"
+                  >Next.js • Chart.js</span
+                >
+                <a
+                  href="#"
+                  class="text-white hover:text-purple-400 transition-colors"
+                  ><i class="fas fa-external-link-alt"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div
+            class="glass-card p-1 rounded-2xl group hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div
+              class="bg-gradient-to-br from-gray-900 to-black rounded-xl p-6 h-full flex flex-col relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-colors"
+              ></div>
+
+              <div class="mb-6">
+                <i class="fas fa-wallet text-3xl text-blue-400 mb-4"></i>
+                <h3 class="text-xl font-bold text-white mb-2">Web3 Demo</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                  Blockchain integration showcase featuring wallet connectivity,
+                  smart contract interactions, and secure transactions.
+                </p>
+              </div>
+
+              <div
+                class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center"
+              >
+                <span class="text-xs font-mono text-gray-500"
+                  >Ethers.js • React</span
+                >
+                <a
+                  href="#"
+                  class="text-white hover:text-blue-400 transition-colors"
+                  ><i class="fas fa-external-link-alt"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="mb-20">
+        <div
+          class="glass-card rounded-3xl p-8 md:p-12 border border-white/5 relative overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"
+          ></div>
+
+          <div class="grid md:grid-cols-2 gap-12 relative z-10">
+            <div>
+              <h2 class="font-display text-4xl font-bold text-white mb-4">
+                Let's build something <br />
+                <span class="text-indigo-400">amazing.</span>
+              </h2>
+              <p class="text-gray-400 mb-8 text-lg">
+                I'm currently available for freelance projects and open to new
+                opportunities. Let's discuss your next project.
+              </p>
+
+              <div class="space-y-6">
+                <a
+                  href="mailto:thetahakarimi@gmail.com"
+                  class="flex items-center gap-4 text-white hover:text-indigo-400 transition-colors group"
+                >
+                  <div
+                    class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors"
+                  >
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <span class="font-medium">thetahakarimi@gmail.com</span>
+                </a>
+                <div class="flex items-center gap-4 text-gray-300">
+                  <div
+                    class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center"
+                  >
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <span>Tehran, IR</span>
+                </div>
+              </div>
+            </div>
+
+            <form class="space-y-4">
+              <div class="grid grid-cols-2 gap-4">
                 <input
                   type="text"
-                  placeholder="Your Name"
-                  class="form-input"
+                  placeholder="Name"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all"
                   required
                 />
-              </div>
-
-              <div>
                 <input
                   type="email"
-                  placeholder="Your Email"
-                  class="form-input"
+                  placeholder="Email"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all"
                   required
                 />
               </div>
-
-              <div>
-                <input
-                  type="text"
-                  placeholder="Subject"
-                  class="form-input"
-                  required
-                />
-              </div>
-
-              <div>
-                <textarea
-                  placeholder="Your Message"
-                  rows="4"
-                  class="form-input resize-none"
-                  required
-                ></textarea>
-              </div>
-
-              <button type="submit" class="btn-primary w-full justify-center">
-                <i class="fas fa-paper-plane"></i>
-                Send Message
+              <textarea
+                rows="4"
+                placeholder="Tell me about your project..."
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all resize-none"
+                required
+              ></textarea>
+              <button
+                type="submit"
+                class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+              >
+                Send Message <i class="fas fa-paper-plane"></i>
               </button>
             </form>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-white/10">
-      <div class="max-w-6xl mx-auto text-center">
-        <div class="flex justify-center space-x-6 mb-8">
-          <a
-            href="https://www.linkedin.com/in/taha-karimi-b6b134328/"
-            class="text-slate-400 hover:text-white transition-colors text-xl"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a
-            href="https://github.com/Taha-Karimi"
-            class="text-slate-400 hover:text-white transition-colors text-xl"
-          >
-            <i class="fab fa-github"></i>
-          </a>
-          <a
-            href="https://x.com/the_Tahak"
-            class="text-slate-400 hover:text-white transition-colors text-xl"
-          >
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a
-            href="https://t.me/itstahak"
-            class="text-slate-400 hover:text-white transition-colors text-xl"
-          >
-            <i class="fab fa-telegram"></i>
-          </a>
-          <a
-            href="mailto:thetahakarimi@gmail.com"
-            class="text-slate-400 hover:text-white transition-colors text-xl"
-          >
-            <i class="fas fa-envelope"></i>
-          </a>
+      <footer
+        class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 gap-4"
+      >
+        <p>&copy; 2024 Taha Karimi. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-white transition-colors">Twitter</a>
+          <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+          <a href="#" class="hover:text-white transition-colors">GitHub</a>
         </div>
-
-        <p class="text-slate-400">© 2024 Taha-Karimi. All rights reserved.</p>
-      </div>
-    </footer>
+      </footer>
+    </main>
 
     <script>
-      // Smooth scrolling and navigation
-      document.addEventListener("DOMContentLoaded", function () {
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
-        };
+      // Mobile menu
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        }, observerOptions);
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        mobileMenu.classList.toggle("flex");
+      });
 
-        document.querySelectorAll(".fade-in").forEach((el) => {
-          observer.observe(el);
-        });
-
-        // Navigation scroll effect
-        let lastScrollTop = 0;
-        window.addEventListener("scroll", () => {
-          const nav = document.querySelector(".nav-glass");
-          const scrollTop =
-            window.pageYOffset || document.documentElement.scrollTop;
-
-          if (nav) {
-            if (scrollTop > 100) {
-              nav.classList.add("scrolled");
-            } else {
-              nav.classList.remove("scrolled");
-            }
-          }
-
-          lastScrollTop = scrollTop;
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-              target.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-            }
-          });
-        });
-
-        // Form submission
-        document.querySelector("form").addEventListener("submit", function (e) {
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
           e.preventDefault();
-          alert("Thank you for your message! I'll get back to you soon.");
-        });
-
-        // Three.js 3D Floating Geometric Shapes
-        function initThreeJS() {
-          const container = document.getElementById('three-container');
-          const scene = new THREE.Scene();
-          const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-          const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-          
-          renderer.setSize(window.innerWidth, window.innerHeight);
-          renderer.setClearColor(0x000000, 0);
-          container.appendChild(renderer.domElement);
-
-          // Create floating geometric shapes
-          const geometries = [
-            new THREE.BoxGeometry(0.5, 0.5, 0.5),
-            new THREE.SphereGeometry(0.3, 32, 32),
-            new THREE.OctahedronGeometry(0.4),
-            new THREE.TetrahedronGeometry(0.4),
-            new THREE.IcosahedronGeometry(0.3)
-          ];
-
-          const materials = [
-            new THREE.MeshBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.6 }),
-            new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.6 }),
-            new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.6 }),
-            new THREE.MeshBasicMaterial({ color: 0x00ffff, transparent: true, opacity: 0.6 }),
-            new THREE.MeshBasicMaterial({ color: 0xff00ff, transparent: true, opacity: 0.6 })
-          ];
-
-          const meshes = [];
-          for (let i = 0; i < 15; i++) {
-            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-            const material = materials[Math.floor(Math.random() * materials.length)];
-            const mesh = new THREE.Mesh(geometry, material);
-            
-            mesh.position.set(
-              (Math.random() - 0.5) * 20,
-              (Math.random() - 0.5) * 20,
-              (Math.random() - 0.5) * 20
-            );
-            
-            mesh.rotation.set(
-              Math.random() * Math.PI,
-              Math.random() * Math.PI,
-              Math.random() * Math.PI
-            );
-            
-            meshes.push(mesh);
-            scene.add(mesh);
-          }
-
-          camera.position.z = 10;
-
-          // Animation loop
-          function animate() {
-            requestAnimationFrame(animate);
-            
-            meshes.forEach((mesh, index) => {
-              mesh.rotation.x += 0.005 + index * 0.001;
-              mesh.rotation.y += 0.005 + index * 0.001;
-              mesh.position.y += Math.sin(Date.now() * 0.001 + index) * 0.002;
-              mesh.position.x += Math.cos(Date.now() * 0.001 + index) * 0.002;
-            });
-            
-            renderer.render(scene, camera);
-          }
-
-          animate();
-
-          // Handle window resize
-          window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-          });
-        }
-
-        // Initialize Three.js
-        initThreeJS();
-
-        // Enhanced Particle System
-        function initParticles() {
-          particlesJS('particles-js', {
-            particles: {
-              number: { value: 80, density: { enable: true, value_area: 800 } },
-              color: { value: ['#3b82f6', '#f59e0b', '#8b5cf6', '#00ffff', '#ff00ff'] },
-              shape: { type: 'circle' },
-              opacity: { value: 0.6, random: true },
-              size: { value: 3, random: true },
-              line_linked: {
-                enable: true,
-                distance: 150,
-                color: '#3b82f6',
-                opacity: 0.2,
-                width: 1
-              },
-              move: {
-                enable: true,
-                speed: 2,
-                direction: 'none',
-                random: true,
-                straight: false,
-                out_mode: 'out',
-                bounce: false
-              }
-            },
-            interactivity: {
-              detect_on: 'canvas',
-              events: {
-                onhover: { enable: true, mode: 'repulse' },
-                onclick: { enable: true, mode: 'push' },
-                resize: true
-              }
-            }
-          });
-        }
-
-        // Initialize particles
-        initParticles();
-
-        // GSAP ScrollTrigger Animations
-        if (typeof gsap !== 'undefined') {
-          gsap.registerPlugin(ScrollTrigger);
-
-          // Hero title animation
-          gsap.from('.hero-title', {
-            duration: 2,
-            y: 100,
-            opacity: 0,
-            ease: 'power3.out',
-            delay: 0.5
-          });
-
-          // Hero subtitle animation
-          gsap.from('.hero-subtitle', {
-            duration: 1.5,
-            y: 50,
-            opacity: 0,
-            ease: 'power3.out',
-            delay: 0.8
-          });
-
-          // Hero buttons animation
-          gsap.from('.hero-buttons a', {
-            duration: 1,
-            y: 30,
-            opacity: 0,
-            ease: 'power3.out',
-            delay: 1.2,
-            stagger: 0.2
-          });
-
-          // Project cards animation - FIXED to ensure visibility
-          gsap.utils.toArray('.project-card').forEach((card, index) => {
-            gsap.from(card, {
-              scrollTrigger: {
-                trigger: card,
-                start: 'top 80%',
-                end: 'bottom 20%',
-                toggleActions: 'play none none reverse'
-              },
-              duration: 1,
-              y: 50,
-              opacity: 0,
-              rotationX: 15,
-              ease: 'power3.out',
-              delay: index * 0.1,
-              onStart: function() {
-                console.log('Project card animation started for card', index);
-              },
-              onComplete: function() {
-                console.log('Project card animation completed for card', index);
-              }
-            });
-          });
-          
-          // Ensure project cards are visible even if GSAP fails
-          window.addEventListener('load', function() {
-            const projectCards = document.querySelectorAll('.project-card');
-            projectCards.forEach((card, index) => {
-              card.style.opacity = '1';
-              card.style.visibility = 'visible';
-              card.style.transform = 'none';
-              console.log('Project card', index, 'made visible');
-            });
-            
-            // Also ensure Technology Showcase section is visible
-            const techShowcase = document.querySelector('#projects');
-            if (techShowcase) {
-              techShowcase.style.opacity = '1';
-              techShowcase.style.visibility = 'visible';
-              console.log('Technology Showcase section made visible');
-            }
-          });
-
-          // Skills section animation - FIXED to ensure visibility
-          gsap.from('#skills .liquid-glass', {
-            scrollTrigger: {
-              trigger: '#skills',
-              start: 'top 80%',
-              end: 'bottom 20%',
-              toggleActions: 'play none none reverse'
-            },
-            duration: 0.8,
-            scale: 0.8,
-            opacity: 0,
-            y: 30,
-            ease: 'power3.out',
-            stagger: 0.2,
-            onStart: function() {
-              console.log('Skills section animation started');
-            },
-            onComplete: function() {
-              console.log('Skills section animation completed');
-            }
-          });
-          
-          // Ensure skills section is visible even if GSAP fails
-          window.addEventListener('load', function() {
-            const skillsSection = document.getElementById('skills');
-            if (skillsSection) {
-              skillsSection.style.opacity = '1';
-              skillsSection.style.visibility = 'visible';
-              console.log('Skills section made visible');
-            }
-          });
-        }
-
-        // Enhanced interactive particles on mouse move
-        document.addEventListener("mousemove", (e) => {
-          if (Math.random() > 0.95) {
-            createEnhancedParticle(e.clientX, e.clientY);
-          }
-        });
-
-        // Mobile Menu Functionality
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        if (hamburger && mobileMenu) {
-          hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            
-            // Prevent body scroll when menu is open
-            if (mobileMenu.classList.contains('active')) {
-              document.body.style.overflow = 'hidden';
-            } else {
-              document.body.style.overflow = '';
-            }
-          });
-        }
-
-        // Close mobile menu function with smooth scroll
-        function closeMobileMenu() {
-          if (hamburger && mobileMenu) {
-            hamburger.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-          }
-        }
-
-        // Smooth scroll function
-        function smoothScrollTo(targetId) {
-          const target = document.querySelector(targetId);
+          const target = document.querySelector(this.getAttribute("href"));
           if (target) {
-            const offsetTop = target.offsetTop - 80; // Account for fixed nav
-            window.scrollTo({
-              top: offsetTop,
-              behavior: 'smooth'
+            mobileMenu.classList.add("hidden");
+            mobileMenu.classList.remove("flex");
+            target.scrollIntoView({
+              behavior: "smooth",
             });
           }
-        }
-
-        // Add smooth scroll to all navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-          link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            
-            // Close mobile menu if it's open
-            if (mobileMenu && mobileMenu.classList.contains('active')) {
-              closeMobileMenu();
-              // Add small delay to allow menu to close before scrolling
-              setTimeout(() => {
-                smoothScrollTo(targetId);
-              }, 300);
-            } else {
-              smoothScrollTo(targetId);
-            }
-          });
         });
+      });
 
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-          if (mobileMenu && mobileMenu.classList.contains('active')) {
-            if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
-              closeMobileMenu();
-            }
-          }
-        });
+      // Form
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const btn = this.querySelector("button");
+        const originalText = btn.innerHTML;
+        btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
+        btn.classList.add("bg-green-500", "text-white");
 
-        // Close menu on escape key
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
-            closeMobileMenu();
-          }
-        });
-
-        // Enhanced scroll indicator
-        function updateScrollIndicator() {
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const scrollPercent = (scrollTop / scrollHeight) * 100;
-          
-          let indicator = document.querySelector('.scroll-indicator');
-          if (!indicator) {
-            indicator = document.createElement('div');
-            indicator.className = 'scroll-indicator';
-            document.body.appendChild(indicator);
-          }
-          
-          indicator.style.width = scrollPercent + '%';
-        }
-
-        // Add scroll event listener for indicator
-        window.addEventListener('scroll', updateScrollIndicator);
-        
-        // Initialize scroll indicator
-        updateScrollIndicator();
-
-        // Handle window resize
-        window.addEventListener('resize', function() {
-          if (window.innerWidth >= 768 && mobileMenu && mobileMenu.classList.contains('active')) {
-            closeMobileMenu();
-          }
-        });
-
-        // Mobile-optimized animations
-        const isMobile = window.innerWidth <= 768;
-        
-        // Reduce particle effects on mobile for better performance
-        if (isMobile) {
-          document.addEventListener("mousemove", (e) => {
-            if (Math.random() > 0.98) { // Reduced frequency on mobile
-              createEnhancedParticle(e.clientX, e.clientY);
-            }
-          });
-        } else {
-          document.addEventListener("mousemove", (e) => {
-            if (Math.random() > 0.95) {
-              createEnhancedParticle(e.clientX, e.clientY);
-            }
-          });
-        }
-
-        // Touch-friendly interactions
-        if ('ontouchstart' in window) {
-          // Add touch feedback for buttons
-          const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .social-link, .tech-badge');
-          buttons.forEach(button => {
-            button.addEventListener('touchstart', function() {
-              this.style.transform = 'scale(0.95)';
-            });
-            
-            button.addEventListener('touchend', function() {
-              setTimeout(() => {
-                this.style.transform = '';
-              }, 150);
-            });
-          });
-
-          // Improve mobile scroll performance
-          let ticking = false;
-          function updateScrollEffects() {
-            // Reduced scroll effects on mobile
-            ticking = false;
-          }
-
-          document.addEventListener('scroll', function() {
-            if (!ticking) {
-              requestAnimationFrame(updateScrollEffects);
-              ticking = true;
-            }
-          }, { passive: true });
-        }
-
-        function createEnhancedParticle(x, y) {
-          const colors = ['#3b82f6', '#f59e0b', '#8b5cf6', '#00ffff', '#ff00ff'];
-          const particle = document.createElement("div");
-          particle.style.position = "fixed";
-          particle.style.left = x + "px";
-          particle.style.top = y + "px";
-          particle.style.width = "6px";
-          particle.style.height = "6px";
-          particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-          particle.style.borderRadius = "50%";
-          particle.style.pointerEvents = "none";
-          particle.style.zIndex = "1000";
-          particle.style.animation = "enhancedFadeOut 2s ease-out forwards";
-          particle.style.boxShadow = `0 0 10px ${particle.style.background}, 0 0 20px ${particle.style.background}`;
-
-          document.body.appendChild(particle);
-
-          setTimeout(() => {
-            particle.remove();
-          }, 2000);
-        }
-
-        // Add enhanced animations
-        const style = document.createElement("style");
-        style.textContent = `
-                @keyframes fadeOut {
-                    0% {
-                        opacity: 1;
-                        transform: scale(1);
-                    }
-                    100% {
-                        opacity: 0;
-                        transform: scale(0) translateY(-30px);
-                    }
-                }
-                
-                @keyframes enhancedFadeOut {
-                    0% {
-                        opacity: 1;
-                        transform: scale(1) translateY(0);
-                    }
-                    100% {
-                        opacity: 0;
-                        transform: scale(0) translateY(-50px);
-                    }
-                }
-                
-                @keyframes float3D {
-                    0%, 100% {
-                        transform: translateY(0) rotateX(0) rotateY(0) rotateZ(0);
-                    }
-                    25% {
-                        transform: translateY(-20px) rotateX(90deg) rotateY(180deg) rotateZ(45deg);
-                    }
-                    50% {
-                        transform: translateY(0) rotateX(180deg) rotateY(360deg) rotateZ(90deg);
-                    }
-                    75% {
-                        transform: translateY(20px) rotateX(270deg) rotateY(540deg) rotateZ(135deg);
-                    }
-                }
-                
-                @keyframes neonPulse {
-                    0%, 100% {
-                        box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
-                    }
-                    50% {
-                        box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
-                    }
-                }
-            `;
-        document.head.appendChild(style);
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove("bg-green-500", "text-white");
+          this.reset();
+        }, 3000);
       });
     </script>
-    <!-- Three.js 3D Floating Shapes -->
-    <div id="three-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></div>
-
-    <!-- Enhanced Particle System -->
-    <div id="particles-js" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></div>
-
-    <!-- ENSURE SKILLS SECTION VISIBILITY -->
-    <style>
-      /* Emergency visibility fix for skills section */
-      #skills {
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: block !important;
-        min-height: 100vh !important;
-      }
-      
-      #skills * {
-        opacity: 1 !important;
-        visibility: visible !important;
-      }
-      
-      /* Emergency visibility fix for Technology Showcase section */
-      #projects {
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: block !important;
-        min-height: 100vh !important;
-      }
-      
-      #projects * {
-        opacity: 1 !important;
-        visibility: visible !important;
-      }
-      
-      /* Emergency visibility fix for project cards */
-      .project-card {
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: none !important;
-      }
-      
-      .fade-in {
-        opacity: 1 !important;
-        visibility: visible !important;
-      }
-      
-      .liquid-glass {
-        opacity: 1 !important;
-        visibility: visible !important;
-      }
-    </style>
-
   </body>
 </html>
