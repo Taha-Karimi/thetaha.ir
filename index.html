@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=Vazirmatn:wght@100..900&display=swap"
       rel="stylesheet"
     />
     <script>
@@ -20,6 +20,7 @@
             fontFamily: {
               sans: ["Inter", "sans-serif"],
               display: ["Space Grotesk", "sans-serif"],
+              persian: ["Yekan Bakh FaNum", "sans-serif"],
             },
             colors: {
               background: "#030712", // Gray 950
@@ -32,21 +33,142 @@
         },
       };
     </script>
+
     <style>
+      @font-face {
+        font-family: "Yekan Bakh FaNum";
+        src: url("https://db.onlinewebfonts.com/t/41e49eab42867016423011dccc96c22a.woff2")
+            format("woff2"),
+          url("https://db.onlinewebfonts.com/t/41e49eab42867016423011dccc96c22a.woff")
+            format("woff");
+        font-weight: 700;
+        font-style: normal;
+      }
       body {
         background-color: #030712;
         color: #f3f4f6;
+        position: relative;
       }
+      
+      /* Animated background gradient */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 20%, rgba(34, 211, 238, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+        animation: gradientShift 15s ease infinite;
+        z-index: 0;
+      }
+      
+      @keyframes gradientShift {
+        0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        50% { opacity: 0.8; transform: scale(1.1) rotate(5deg); }
+      }
+      
       .glass-card {
-        background: rgba(17, 24, 39, 0.7);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(17, 24, 39, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
       }
+      
+      .glass-card:hover {
+        background: rgba(17, 24, 39, 0.7);
+        border-color: rgba(99, 102, 241, 0.3);
+        box-shadow: 0 12px 48px rgba(99, 102, 241, 0.15);
+        transform: translateY(-2px);
+      }
+      
       .gradient-text {
-        background: linear-gradient(to right, #818cf8, #e879f9, #22d3ee);
+        background: linear-gradient(135deg, #818cf8, #e879f9, #22d3ee);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-size: 200% 200%;
+        animation: gradientFlow 8s ease infinite;
+      }
+      
+      @keyframes gradientFlow {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      
+      /* Glowing button effect */
+      .glow-button {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .glow-button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+        border-radius: 50%;
+      }
+      
+      .glow-button:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+      
+      /* Floating animation */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+      
+      .float-animation {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      /* Particle effect */
+      .particle {
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0;
+        animation: particleFloat 8s linear infinite;
+      }
+      
+      @keyframes particleFloat {
+        0% { transform: translateY(100vh) scale(0); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100px) scale(1); opacity: 0; }
+      }
+      
+      /* Shimmer effect for cards */
+      .shimmer {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .shimmer::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .shimmer:hover::after {
+        left: 100%;
       }
     </style>
   </head>
@@ -71,24 +193,34 @@
         >
           <a
             href="#about"
+            id="nav-about"
             class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
             >About</a
           >
           <a
             href="#experience"
+            id="nav-experience"
             class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
             >Experience</a
           >
           <a
             href="#projects"
+            id="nav-projects"
             class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
             >Projects</a
           >
           <a
             href="#contact"
+            id="nav-contact"
             class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
             >Contact</a
           >
+          <button
+            id="lang-toggle"
+            class="px-4 py-1.5 text-sm font-medium text-white bg-indigo-500/20 hover:bg-indigo-500/40 rounded-full transition-all border border-indigo-500/50"
+          >
+            EN
+          </button>
         </div>
 
         <a
@@ -114,21 +246,25 @@
       >
         <a
           href="#about"
+          id="mobile-nav-about"
           class="block px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg"
           >About</a
         >
         <a
           href="#experience"
+          id="mobile-nav-experience"
           class="block px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg"
           >Experience</a
         >
         <a
           href="#projects"
+          id="mobile-nav-projects"
           class="block px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg"
           >Projects</a
         >
         <a
           href="#contact"
+          id="mobile-nav-contact"
           class="block px-4 py-3 text-gray-300 hover:bg-white/5 rounded-lg"
           >Contact</a
         >
@@ -145,10 +281,11 @@
             <span
               class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"
             ></span>
-            Open to work
+            <span id="hero-badge">Open to work</span>
           </div>
 
           <h1
+            id="hero-title"
             class="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[1.1]"
           >
             Building the <br />
@@ -156,6 +293,7 @@
           </h1>
 
           <p
+            id="hero-subtitle"
             class="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl leading-relaxed"
           >
             Hi, I'm <span class="text-white font-semibold">Taha Karimi</span>. I
@@ -166,6 +304,7 @@
           <div class="flex flex-wrap gap-4">
             <a
               href="#contact"
+              id="hero-cta-talk"
               class="px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-indigo-50 transition-colors flex items-center gap-2"
             >
               Let's Talk
@@ -175,6 +314,7 @@
             </a>
             <a
               href="#projects"
+              id="hero-cta-work"
               class="px-8 py-4 glass-card text-white rounded-full font-medium hover:bg-white/10 transition-colors border border-white/10"
             >
               View Work
@@ -219,13 +359,16 @@
           <div
             class="md:col-span-2 glass-card p-8 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-colors"
           >
-            <h3 class="text-xl font-bold text-white mb-4">The Developer</h3>
-            <p class="text-gray-400 leading-relaxed mb-6">
+            <h3 id="about-headline" class="text-xl font-bold text-white mb-4">
+              The Developer
+            </h3>
+            <p id="about-body" class="text-gray-400 leading-relaxed mb-6">
               I specialize in building scalable, high-performance web
               applications across Web3, fintech, and SaaS sectors. With deep
               expertise in the React ecosystem, I bridge the gap between complex
               backend logic and intuitive user interfaces.
             </p>
+            <p id="education-text" class="text-indigo-400 font-medium mb-6"></p>
             <div class="flex flex-wrap gap-2">
               <span
                 class="px-3 py-1 bg-indigo-500/10 text-indigo-300 rounded-lg text-sm border border-indigo-500/20"
@@ -244,51 +387,21 @@
 
           <!-- Tech Stack Card -->
           <div
+            id="skills-container"
             class="glass-card p-8 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-colors"
           >
-            <h3 class="text-xl font-bold text-white mb-6">Tech Stack</h3>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="flex items-center gap-3 text-gray-400">
-                <i class="fab fa-react text-cyan-400"></i> React
-              </div>
-              <div class="flex items-center gap-3 text-gray-400">
-                <i class="fas fa-bolt text-yellow-400"></i> Next.js
-              </div>
-              <div class="flex items-center gap-3 text-gray-400">
-                <i class="fab fa-js text-yellow-300"></i> TypeScript
-              </div>
-              <div class="flex items-center gap-3 text-gray-400">
-                <i class="fas fa-cube text-indigo-400"></i> Web3.js
-              </div>
-              <div class="flex items-center gap-3 text-gray-400">
-                <i class="fas fa-wind text-cyan-300"></i> Tailwind
-              </div>
-              <div class="flex items-center gap-3 text-gray-400">
-                <i class="fas fa-database text-green-400"></i> GraphQL
-              </div>
-            </div>
+            <!-- Content will be populated by JS -->
           </div>
 
-          <!-- Stats/Services -->
-          <div class="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div
-              class="glass-card p-6 rounded-2xl text-center border border-white/5 hover:bg-white/5 transition-colors"
-            >
-              <div class="text-4xl font-bold text-white mb-1">3+</div>
-              <div class="text-sm text-gray-500">Years Experience</div>
-            </div>
-            <div
-              class="glass-card p-6 rounded-2xl text-center border border-white/5 hover:bg-white/5 transition-colors"
-            >
-              <div class="text-4xl font-bold text-white mb-1">15+</div>
-              <div class="text-sm text-gray-500">Projects Delivered</div>
-            </div>
-            <div
-              class="glass-card p-6 rounded-2xl text-center border border-white/5 hover:bg-white/5 transition-colors"
-            >
-              <div class="text-4xl font-bold text-white mb-1">100%</div>
-              <div class="text-sm text-gray-500">Client Satisfaction</div>
-            </div>
+          <!-- Work Philosophy -->
+          <div
+            class="md:col-span-3 glass-card p-8 rounded-2xl border border-white/5 hover:bg-white/5 transition-colors"
+          >
+            <h3 class="text-xl font-bold text-white mb-6">Work Philosophy</h3>
+            <ul
+              id="philosophy-list"
+              class="text-gray-400 leading-relaxed list-none space-y-2"
+            ></ul>
           </div>
         </div>
       </section>
@@ -302,101 +415,10 @@
         </h2>
 
         <div
+          id="experience-list"
           class="relative border-l border-white/10 ml-3 md:ml-6 space-y-12 pl-8 md:pl-12"
         >
-          <!-- Job 1 -->
-          <div class="relative group">
-            <span
-              class="absolute -left-[41px] md:-left-[57px] top-2 w-5 h-5 rounded-full border-4 border-background bg-indigo-500 group-hover:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(99,102,241,0.5)]"
-            ></span>
-            <div
-              class="glass-card p-8 rounded-2xl border border-white/5 group-hover:border-indigo-500/30 transition-colors"
-            >
-              <div
-                class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2"
-              >
-                <div>
-                  <h3 class="text-xl font-bold text-white">
-                    React.js Developer
-                  </h3>
-                  <div class="text-indigo-400 font-medium">
-                    Galaxuim – Web3 Gaming Platform
-                  </div>
-                </div>
-                <span
-                  class="text-sm text-gray-500 bg-white/5 px-3 py-1 rounded-full w-fit"
-                  >Web3 Gaming</span
-                >
-              </div>
-              <p class="text-gray-400 mb-6 leading-relaxed">
-                Engineered a multi-game Web3 platform with NFT-style
-                collectibles and multi-blockchain wallet integration. Designed
-                and deployed a responsive, animated UI using Framer Motion to
-                deliver real-time rewards, quests, and social features.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
-                  >React</span
-                >
-                <span
-                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
-                  >Solana</span
-                >
-                <span
-                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
-                  >Ethers.js</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <!-- Job 2 -->
-          <div class="relative group">
-            <span
-              class="absolute -left-[41px] md:-left-[57px] top-2 w-5 h-5 rounded-full border-4 border-background bg-purple-500 group-hover:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(236,72,153,0.5)]"
-            ></span>
-            <div
-              class="glass-card p-8 rounded-2xl border border-white/5 group-hover:border-purple-500/30 transition-colors"
-            >
-              <div
-                class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2"
-              >
-                <div>
-                  <h3 class="text-xl font-bold text-white">
-                    Frontend Developer
-                  </h3>
-                  <div class="text-purple-400 font-medium">
-                    Crypto Exchange Platform
-                  </div>
-                </div>
-                <span
-                  class="text-sm text-gray-500 bg-white/5 px-3 py-1 rounded-full w-fit"
-                  >Fintech</span
-                >
-              </div>
-              <p class="text-gray-400 mb-6 leading-relaxed">
-                Developed a cryptocurrency exchange app with real-time trading
-                features and wallet management. Integrated WebSocket-based live
-                updates, custom hooks for state management, and multi-language
-                support (i18n).
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
-                  >Next.js</span
-                >
-                <span
-                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
-                  >WebSockets</span
-                >
-                <span
-                  class="px-2 py-1 text-xs rounded bg-white/5 text-gray-300 border border-white/5"
-                  >TypeScript</span
-                >
-              </div>
-            </div>
-          </div>
+          <!-- Experience items will be populated by JS -->
         </div>
       </section>
 
@@ -647,5 +669,6 @@
         }, 3000);
       });
     </script>
+    <script src="localization.js"></script>
   </body>
 </html>
